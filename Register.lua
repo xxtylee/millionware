@@ -43,7 +43,7 @@ Typeface.WeightNum = {
 function Typeface:RequestFile(URL)
 	local Response = request{Url = URL, Method = "GET"}
 
-	assert(Response.StatusCode == 200, `[ Typeface Registration ] Content Error! : { Response.StatusCode }`)
+	assert(Response.StatusCode == 200, `[ chaos Registration ] Content Error! : { Response.StatusCode }`)
 
     return Response.Body
 end
@@ -61,8 +61,8 @@ function Typeface:Register(Path, Asset)
     Asset.weight = Asset.weight or "Regular"
     Asset.style = Asset.style or "Normal"
 
-    assert(Asset.link, `[ Typeface Registration ] "link" is required to Register a Typeface!`)
-    assert(Asset.name, `[ Typeface Registration ] "name" is required to Register a Typeface!`)
+    assert(Asset.link, `[ chaos Registration ] "link" is required to Register a Typeface!`)
+    assert(Asset.name, `[ chaos Registration ] "name" is required to Register a Typeface!`)
 
 	local Directory = `{ Path or "" }\\{ Asset.name }`
 
@@ -103,7 +103,7 @@ function Typeface:Register(Path, Asset)
             table.insert(JSONFile.faces, Data)
 
             Typeface:Writeface(`{ Directory }\\{ Asset.name }Families.json`, JSONFile)
-            warn(`[ Typeface Registration ] Registering { Asset.weight } { Asset.style } Typeface to "{ Directory }"...`)
+            warn(`[ chaos Registration ] Registering { Asset.weight } { Asset.style } Typeface to "{ Directory }"...`)
         end
 	else
 		Data = { 
@@ -114,7 +114,7 @@ function Typeface:Register(Path, Asset)
 		}
 
 		Typeface:Writeface(`{ Directory }\\{ Asset.name }Families.json`, { name = Name, faces = { Data } })
-        warn(`[ Typeface Registration ] Registering { Asset.name } Typeface to "{ Path }"...`)
+        warn(`[ chaos Registration ] Registering { Asset.name } Typeface to "{ Path }"...`)
 	end
 
 	Typeface.Typefaces[Name] = Typeface.Typefaces[Name] or Font.new(getcustomasset(`{ Directory }\\{ Asset.name }Families.json`))
