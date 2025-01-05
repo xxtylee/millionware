@@ -1,4 +1,4 @@
-local library, object, global, chaos = 
+local library, object, global, typeface = 
 	{pointers = {}, flags = {}, configs = {}, activekeys = {}, functions = {}, hud = {}, windows = {}, popups = {}, loaded = false}, 
 	{objects = {}, assets = {}, accents = {}, signals = {}, callbacks = {}}, 
 	loadstring(game:HttpGet "https://raw.githubusercontent.com/xxtylee/millionware/refs/heads/main/globals.lua")(),
@@ -10,25 +10,25 @@ library.menubind = Enum.KeyCode.Insert
 library.core = global.hui
 
 library.files = {
-	directory = "KenCarson",
+	directory = "Ken Carson",
 	config = "configs",
 	font = "fonts"
 }
 
-library.primaryfont = chaos:Register(library.files.directory .. "\\" .. library.files.font, {
+library.primaryfont = typeface:Register(library.files.directory .. "\\" .. library.files.font, {
     name = "Verdana",
-    link = "https://github.com/fayvrit/chaos/blob/main/Fonts/Verdana.ttf",
+    link = "https://github.com/fayvrit/Typeface/blob/main/Fonts/Verdana.ttf",
 }) 
 
-library.secondaryfont = chaos:Register(library.files.directory .. "\\" .. library.files.font, {
+library.secondaryfont = typeface:Register(library.files.directory .. "\\" .. library.files.font, {
     name = "SmallestPixel",
-    link = "https://github.com/fayvrit/chaos/blob/main/Fonts/SmallestPixel.ttf",
+    link = "https://github.com/fayvrit/Typeface/blob/main/Fonts/SmallestPixel.ttf",
 }) 
 
-library.boldfont = chaos:Register(library.files.directory .. "\\" .. library.files.font, {
+library.boldfont = typeface:Register(library.files.directory .. "\\" .. library.files.font, {
     name = "Verdana",
     weight = "Bold",
-    link = "https://github.com/fayvrit/chaos/blob/main/Fonts/VerdanaBold.ttf",
+    link = "https://github.com/fayvrit/Typeface/blob/main/Fonts/VerdanaBold.ttf",
 }) 
 
 object.__index = object
