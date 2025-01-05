@@ -1,10 +1,10 @@
 local library, object, global, chaos = 
 	{pointers = {}, flags = {}, configs = {}, activekeys = {}, functions = {}, hud = {}, windows = {}, popups = {}, loaded = false}, 
 	{objects = {}, assets = {}, accents = {}, signals = {}, callbacks = {}}, 
-	loadstring(game:HttpGet "https://raw.githubusercontent.com/xxtylee/KenCarson/refs/heads/main/globals.lua")(),
-	loadstring(game:HttpGet "https://raw.githubusercontent.com/xxtylee/KenCarson/refs/heads/main/Register.lua")()
+	loadstring(game:HttpGet "https://raw.githubusercontent.com/xxtylee/millionware/refs/heads/main/globals.lua")(),
+	loadstring(game:HttpGet "https://raw.githubusercontent.com/xxtylee/millionware/refs/heads/main/Register.lua")()
 
-library.bindstr = global.json("decode", global.request {Url = "https://raw.githubusercontent.com/xxtylee/KenCarson/refs/heads/main/bindstr.json"}.Body)
+library.bindstr = global.json("decode", global.request {Url = "https://raw.githubusercontent.com/xxtylee/millionware/refs/heads/main/bindstr.json"}.Body)
 library.accent = global.rgb(255, 139, 62)
 library.menubind = Enum.KeyCode.Insert
 library.core = global.hui
