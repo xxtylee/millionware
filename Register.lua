@@ -1,4 +1,4 @@
-local chaos = {  }
+local Typeface = {  }
 
 --[[ Compatibility Check ]] do
     cloneref                = cloneref or function(service) return service end
@@ -14,8 +14,8 @@ end
 local Http = cloneref(game:GetService 'HttpService')
 
 -- // Tables
-chaos.chaoss = {  }
-chaos.WeightNum = { 
+Typeface.Typefaces = {  }
+Typeface.WeightNum = { 
 	["Thin"] = 100,
 
 	["ExtraLight"] = 200, 
@@ -40,33 +40,33 @@ chaos.WeightNum = {
 }
 
 -- // Functions
-function chaos:RequestFile(URL)
+function Typeface:RequestFile(URL)
 	local Response = request{Url = URL, Method = "GET"}
 
-	assert(Response.StatusCode == 200, `[ chaos Registration ] Content Error! : { Response.StatusCode }`)
+	assert(Response.StatusCode == 200, `[ Typeface Registration ] Content Error! : { Response.StatusCode }`)
 
     return Response.Body
 end
 
-function chaos:Writeface(Directory, File)
+function Typeface:Writeface(Directory, File)
     File = Http:JSONEncode(File)
 
 
     writefile(Directory, File)
 end
 
-function chaos:Register(Path, Asset)
+function Typeface:Register(Path, Asset)
 	Asset = Asset or {}
 
     Asset.weight = Asset.weight or "Regular"
     Asset.style = Asset.style or "Normal"
 
-    assert(Asset.link, `[ chaos Registration ] "link" is required to Register a chaos!`)
-    assert(Asset.name, `[ chaos Registration ] "name" is required to Register a chaos!`)
+    assert(Asset.link, `[ Typeface Registration ] "link" is required to Register a Typeface!`)
+    assert(Asset.name, `[ Typeface Registration ] "name" is required to Register a Typeface!`)
 
 	local Directory = `{ Path or "" }\\{ Asset.name }`
 
-    local Weight = chaos.WeightNum[Asset.weight] == 400 and "" or Asset.weight
+    local Weight = Typeface.WeightNum[Asset.weight] == 400 and "" or Asset.weight
     local Style = string.lower(Asset.style) == "normal" and "" or Asset.style
 	local Name = `{ Asset.name }{ Weight }{ Style }`
 
@@ -78,7 +78,7 @@ function chaos:Register(Path, Asset)
     end
 
     if not isfile(`{ Directory }\\{ Name }.font`) then
-        local Response = chaos:RequestFile(Asset.link)
+        local Response = Typeface:RequestFile(Asset.link)
         
         if not Response then return end
 
@@ -88,7 +88,7 @@ function chaos:Register(Path, Asset)
     if isfile(`{ Directory }\\{ Asset.name }Families.json`) then 
         Data = { 
             name = `{ Asset.weight } { Asset.style }`,
-            weight = chaos.WeightNum[Asset.weight] or chaos.WeightNum[string.gsub(Asset.weight, "%s+", "")],
+            weight = Typeface.WeightNum[Asset.weight] or Typeface.WeightNum[string.gsub(Asset.weight, "%s+", "")],
             style = string.lower(Asset.style),
             assetId = getcustomasset(`{ Directory }\\{ Name }.font`)
 		}
@@ -102,23 +102,23 @@ function chaos:Register(Path, Asset)
         if not Registered then
             table.insert(JSONFile.faces, Data)
 
-            chaos:Writeface(`{ Directory }\\{ Asset.name }Families.json`, JSONFile)
-            warn(`[ chaos Registration ] Registering { Asset.weight } { Asset.style } chaos to "{ Directory }"...`)
+            Typeface:Writeface(`{ Directory }\\{ Asset.name }Families.json`, JSONFile)
+            warn(`[ Typeface Registration ] Registering { Asset.weight } { Asset.style } Typeface to "{ Directory }"...`)
         end
 	else
 		Data = { 
 			name = `{ Asset.weight } { Asset.style }`,
-			weight = chaos.WeightNum[Asset.weight] or chaos.WeightNum[string.gsub(Asset.weight, "%s+", "")],
+			weight = Typeface.WeightNum[Asset.weight] or Typeface.WeightNum[string.gsub(Asset.weight, "%s+", "")],
 			style = string.lower(Asset.style),
 			assetId = getcustomasset(`{ Directory }\\{ Name }.font`)
 		}
 
-		chaos:Writeface(`{ Directory }\\{ Asset.name }Families.json`, { name = Name, faces = { Data } })
-        warn(`[ chaos Registration ] Registering { Asset.name } chaos to "{ Path }"...`)
+		Typeface:Writeface(`{ Directory }\\{ Asset.name }Families.json`, { name = Name, faces = { Data } })
+        warn(`[ Typeface Registration ] Registering { Asset.name } Typeface to "{ Path }"...`)
 	end
 
-	chaos.chaoss[Name] = chaos.chaoss[Name] or Font.new(getcustomasset(`{ Directory }\\{ Asset.name }Families.json`))
-    return chaos.chaoss[Name]
+	Typeface.Typefaces[Name] = Typeface.Typefaces[Name] or Font.new(getcustomasset(`{ Directory }\\{ Asset.name }Families.json`))
+    return Typeface.Typefaces[Name]
 end
 
-return chaos
+return Typeface
