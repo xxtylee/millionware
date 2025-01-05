@@ -1,34 +1,34 @@
-local library, object, global, typeface = 
+local library, object, global, chaos = 
 	{pointers = {}, flags = {}, configs = {}, activekeys = {}, functions = {}, hud = {}, windows = {}, popups = {}, loaded = false}, 
 	{objects = {}, assets = {}, accents = {}, signals = {}, callbacks = {}}, 
-	loadstring(game:HttpGet "https://raw.githubusercontent.com/xxtylee/millionware/refs/heads/main/globals.lua")(),
-	loadstring(game:HttpGet "https://raw.githubusercontent.com/xxtylee/millionware/refs/heads/main/Register.lua")()
+	loadstring(game:HttpGet "https://raw.githubusercontent.com/xxtylee/KenCarson/refs/heads/main/globals.lua")(),
+	loadstring(game:HttpGet "https://raw.githubusercontent.com/xxtylee/KenCarson/refs/heads/main/Register.lua")()
 
-library.bindstr = global.json("decode", global.request {Url = "https://raw.githubusercontent.com/xxtylee/millionware/refs/heads/main/bindstr.json"}.Body)
+library.bindstr = global.json("decode", global.request {Url = "https://raw.githubusercontent.com/xxtylee/KenCarson/refs/heads/main/bindstr.json"}.Body)
 library.accent = global.rgb(255, 139, 62)
 library.menubind = Enum.KeyCode.Insert
 library.core = global.hui
 
 library.files = {
-	directory = "millionware",
+	directory = "KenCarson",
 	config = "configs",
 	font = "fonts"
 }
 
-library.primaryfont = typeface:Register(library.files.directory .. "\\" .. library.files.font, {
+library.primaryfont = chaos:Register(library.files.directory .. "\\" .. library.files.font, {
     name = "Verdana",
-    link = "https://github.com/fayvrit/Typeface/blob/main/Fonts/Verdana.ttf",
+    link = "https://github.com/fayvrit/chaos/blob/main/Fonts/Verdana.ttf",
 }) 
 
-library.secondaryfont = typeface:Register(library.files.directory .. "\\" .. library.files.font, {
+library.secondaryfont = chaos:Register(library.files.directory .. "\\" .. library.files.font, {
     name = "SmallestPixel",
-    link = "https://github.com/fayvrit/Typeface/blob/main/Fonts/SmallestPixel.ttf",
+    link = "https://github.com/fayvrit/chaos/blob/main/Fonts/SmallestPixel.ttf",
 }) 
 
-library.boldfont = typeface:Register(library.files.directory .. "\\" .. library.files.font, {
+library.boldfont = chaos:Register(library.files.directory .. "\\" .. library.files.font, {
     name = "Verdana",
     weight = "Bold",
-    link = "https://github.com/fayvrit/Typeface/blob/main/Fonts/VerdanaBold.ttf",
+    link = "https://github.com/fayvrit/chaos/blob/main/Fonts/VerdanaBold.ttf",
 }) 
 
 object.__index = object
